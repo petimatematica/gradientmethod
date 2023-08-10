@@ -154,3 +154,11 @@ x_minimizer, ierror, info, elapsed_time, seqx = result
 - Convergence is determined by checking the euclidian norm of the gradient against the specified tolerance.
 - The function handles cases of convergence, maximum iterations reached, and insufficient step lengths.
 
+# testerayleigh.jl
+
+
+
+
+
+# barchart.jl
+
