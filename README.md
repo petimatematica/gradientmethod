@@ -162,3 +162,19 @@ x_minimizer, ierror, info, elapsed_time, seqx = result
 
 # barchart.jl
 
+## Usage 
+
+Set up your data in the variables categories, **MGA5**, **MGG5**, **MGA20**, and **MGG20**. These variables represent the $x$ axis categories and the respective performances of the algorithms for each configuration.
+Run the code. This will produce a grouped column chart with the configured performances.
+The chart is automatically saved with the name **"epsilon.png"** in the current directory.
+
+## Settings 
+
+- **bar_colors:** sets the colors for each of the columns in the chart;
+- **barchart:** configures and creates the grouped column chart. 
+
+## Customization 
+
+You can easily adjust the chart's appearance by modifying the parameters in **groupedbar()**, such as **xlabel**, **ylabel**, **legend**, **label**, **framestyle**, **seriescolor**, and **dpi**.
+
+
