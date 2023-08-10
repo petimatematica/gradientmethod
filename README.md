@@ -7,13 +7,13 @@ This file contains a function called "armijo" that calculates a step length such
 - **x (vector):** vector containing the current estimate to be minimized;
 - **f (function):** objective function;
 - **gradfx (Float64):** the value of the gradient evaluated at the current estimate;
-- **$\eta$ (Float64):** Armijo condition parameter. It reflects the slope of the tangent line to the objective function;
+- **$\boldsymbol{\eta}$ (Float64):** Armijo condition parameter. It reflects the slope of the tangent line to the objective function;
 - **minstep (Float64):** minimum allowed value for step size. If the step size becomes smaller than this value, the function will return an error;
 - **fx (vector):** value of the objective function at point x.
 
 ## Output:
 
-- **$\alpha$:** selected step size;
+- **$\boldsymbol{\alpha}$:** selected step size;
 - **ierror:** error flag. Returns 1 if the step size is too small; otherwise, returns 0;
 - **et:** time taken to determine the step size.
 
@@ -57,9 +57,9 @@ This file contains a function named "goldstein" that implements the Goldstein co
 - **x (vector):** Current point in the iteration.
 - **f (function):** Objective function to be minimized.
 - **gradfx (Float64):** Gradient of the objective function at point x.
-η (Float64): Parameter used to define the constants $\eta_1$ and $\eta_2$ for the Goldstein condition. The values of $\eta_1$ and $\eta_2$ are respectively $\eta$ and $1-\eta$.
+- **\boldsymbol{η} (Float64):** Parameter used to define the constants $\eta_1$ and $\eta_2$ for the Goldstein condition. The values of $\eta_1$ and $\eta_2$ are respectively $\eta$ and $1-\eta$.
 minstep (Float64): Minimum allowed value for the step size. If the step size becomes smaller than this value, the function will return an error.
-fx (vector): Value of the objective function at point $x$.
+- **fx (vector):** Value of the objective function at point $x$.
 
 ## Output:
 
@@ -111,76 +111,27 @@ This file contains the function called descentgradient that implements the gradi
 
 ## Parameters:
 
-- x (Vector): The initial estimation for the minimizer.
-- f (Function): The objective function to be minimized.
-- ∇f (Function): The gradient of the objective function.
-- ϵ (Float64): The convergence tolerance.
-- η (Float64): The step size parameter.
-- maxiter (Int): The maximum number of iterations allowed.
-- minstep (Float64): The minimum step length for line search.
-- linesearch (Function): The line search function to determine the step size.
+- **x (Vector):** The initial estimation for the minimizer.
+- **f (Function):** The objective function to be minimized.
+- **∇f (Function):** The gradient of the objective function.
+- **ϵ (Float64):** The convergence tolerance.
+- **\boldsymbol{η} (Float64):** The step size parameter.
+- **maxiter (Int):** The maximum number of iterations allowed.
+- **minstep (Float64):** The minimum step length for line search.
+- **linesearch (Function):** The line search function to determine the step size.
 
 ## Output:
 
 The descentgradient function returns the following elements:
 
-- x (Vector): The estimated minimizer.
-- ierror (Int): An indicator of success or failure.
-- info (DataFrame): A DataFrame containing information about optimization progress.
-- fvals (Vector{Float64}): Objective function values at each iteration.
-- gradnorm (Vector{Float64}): L2 norms of gradients at each iteration.
-- stplen (Vector{Float64}): Step lengths used in each iteration.
-- et (Float64): Elapsed time for optimization.
-- seqx (Matrix{Float64}): A matrix storing the sequence of estimations at each iteration.
-
-## Example:
-
-```julia
-include("descentgradient.jl")
-# Define your objective function f(x) and its gradient ∇f(x)
-# Define the line search function for step size determination
-x_initial = rand(2)  # Initial estimation
-ϵ = 1e-6  # Convergence tolerance
-η = 0.1  # Step size parameter
-maxiter = 1000  # Maximum number of iterations
-minstep = 1e-5  # Minimum step length for line search
-result = descentgradient(x_initial, f, ∇f, ϵ, η, maxiter, minstep, linesearch)
-x_minimizer, ierror, info, elapsed_time, seqx = result
-```
-
-## Remark:
-
-- The descentgradient function iteratively updates the estimation x by taking steps in the direction of the negative gradient.
-- Convergence is determined by checking the euclidian norm of the gradient against the specified tolerance.
-- The function handles cases of convergence, maximum iterations reached, and insufficient step lengths.
-
-# gradientmethod.jl 
-
-This file contains the function called descentgradient that implements the gradient method where the steplength is computated by linesearch. To invoke this function you need the following informations:
-
-## Parameters:
-
-- x (Vector): The initial estimation for the minimizer.
-- f (Function): The objective function to be minimized.
-- ∇f (Function): The gradient of the objective function.
-- ϵ (Float64): The convergence tolerance.
-- η (Float64): The step size parameter.
-- maxiter (Int): The maximum number of iterations allowed.
-- minstep (Float64): The minimum step length for line search.
-- linesearch (Function): The line search function to determine the step size.
-
-## Output:
-
-The descentgradient function returns the following elements:
-
-- x (Vector): The estimated minimizer.
-- ierror (Int): An indicator of success or failure.
-- info (DataFrame): A DataFrame containing information about optimization progress.
-- fvals (Vector{Float64}): Objective function values at each iteration.
-- gradnorm (Vector{Float64}): L2 norms of gradients at each iteration.
-- stplen (Vector{Float64}): Step lengths used in each iteration.
-- et (Float64): Elapsed time for optimization.
-- seqx (Matrix{Float64}): A matrix storing the sequence of estimations at each iteration.
+- **x (Vector):** The estimated minimizer.
+- **ierror (Int):** An indicator of success or failure.
+- **info (DataFrame):** A DataFrame containing information about optimization progress.
+- **fvals (Vector{Float64}):** Objective function values at each iteration.
+- **gradnorm (Vector{Float64}):** L2 norms of gradients at each iteration.
+- **stplen (Vector{Float64}):** Step lengths used in each iteration.
+- **et (Float64):** Elapsed time for optimization.
+- **seqx (Matrix{Float64}):** A matrix storing the sequence of estimations at each iteration.
 
 ## Example:
 
@@ -215,12 +166,12 @@ The script is organized into the following sections:
    - The script imports the necessary packages and includes the essential Julia files: `armijo.jl`, `goldstein.jl` and `gradientmethod.jl`.
 
 2. **Configuration and Parameters:**
-   - `nguess`: The number of randomly generated starting points.
+   - **nguess:** The number of randomly generated starting points.
    - `sguess`, `sdmat`, `smatrix`: Strings used for filenames.
-   - `ndim`: An array containing the order of matrices to be tested.
-   - `T` and `V`: Arrays to store CPU times and iteration counts.
-   - `snd`: random number generator from MersenneTwister.
-   - `q`: The number of random matrices to be tested.
+   - **ndim:** An array containing the order of matrices to be tested.
+   - **T and V:** Arrays to store CPU times and iteration counts.
+   - **snd:** random number generator from MersenneTwister.
+   - **q:** The number of random matrices to be tested.
 
 3. **Iterations and settings:**
    - The script iterates through two cases: Armijo (MGA) and Goldstein (MGG) line lookup methods.
