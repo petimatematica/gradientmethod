@@ -21,7 +21,7 @@ This file contains a function called "armijo" that calculates a step length such
 
 If the step size becomes too small (less than minstep), the function returns an error flag ierror = 1. This might indicate that the method is struggling to make progress.
 
-## Application example:
+## Example:
 
 ```julia
  include("armijo.jl")
@@ -71,7 +71,7 @@ minstep (Float64): Minimum allowed value for the step size. If the step size bec
 
 If the step size becomes too small (less than minstep), the function will return an error flag with ierror = 1. This might suggest that the method is having difficulty progressing.
 
-## Application example:
+## Example:
 
 ```julia
 include(“goldstein.jl”)
