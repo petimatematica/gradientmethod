@@ -1,3 +1,52 @@
+# gradientmethod.jl 
+
+This file contains the function called descentgradient that implements the gradient method where the steplength is computated by linesearch. To invoke this function you need the following informations:
+
+## Parameters:
+
+- **x (Vector):** The initial estimation for the minimizer.
+- **f (Function):** The objective function to be minimized.
+- **∇f (Function):** The gradient of the objective function.
+- **ϵ (Float64):** The convergence tolerance.
+- **\boldsymbol{η} (Float64):** The step size parameter.
+- **maxiter (Int):** The maximum number of iterations allowed.
+- **minstep (Float64):** The minimum step length for line search.
+- **linesearch (Function):** The line search function to determine the step size.
+
+## Output:
+
+The descentgradient function returns the following elements:
+
+- **x (Vector):** The estimated minimizer.
+- **ierror (Int):** An indicator of success or failure.
+- **info (DataFrame):** A DataFrame containing information about optimization progress.
+- **fvals (Vector{Float64}):** Objective function values at each iteration.
+- **gradnorm (Vector{Float64}):** L2 norms of gradients at each iteration.
+- **stplen (Vector{Float64}):** Step lengths used in each iteration.
+- **et (Float64):** Elapsed time for optimization.
+- **seqx (Matrix{Float64}):** A matrix storing the sequence of estimations at each iteration.
+
+## Example:
+
+```julia
+include("descentgradient.jl")
+# Define your objective function f(x) and its gradient ∇f(x)
+# Define the line search function for step size determination
+x_initial = rand(2)  # Initial estimation
+ϵ = 1e-6  # Convergence tolerance
+η = 0.1  # Step size parameter
+maxiter = 1000  # Maximum number of iterations
+minstep = 1e-5  # Minimum step length for line search
+result = descentgradient(x_initial, f, ∇f, ϵ, η, maxiter, minstep, linesearch)
+x_minimizer, ierror, info, elapsed_time, seqx = result
+```
+
+## Remark:
+
+- The descentgradient function iteratively updates the estimation x by taking steps in the direction of the negative gradient.
+- Convergence is determined by checking the euclidian norm of the gradient against the specified tolerance.
+- The function handles cases of convergence, maximum iterations reached, and insufficient step lengths.
+
 # armijo.jl
 
 This file contains a function called "armijo" that calculates a step length such that the Armijo search $f(x+\alpha d)\le f(x)+\eta \alpha\nabla f(x)^Td$ is satisfied.
@@ -104,55 +153,6 @@ minstep = 1e-5
 ## Remarks: 
 
 - The step size is initialized as $\alpha=1.0$ and is adjusted with each iteration until the Goldstein conditions are met.
-
-# gradientmethod.jl 
-
-This file contains the function called descentgradient that implements the gradient method where the steplength is computated by linesearch. To invoke this function you need the following informations:
-
-## Parameters:
-
-- **x (Vector):** The initial estimation for the minimizer.
-- **f (Function):** The objective function to be minimized.
-- **∇f (Function):** The gradient of the objective function.
-- **ϵ (Float64):** The convergence tolerance.
-- **\boldsymbol{η} (Float64):** The step size parameter.
-- **maxiter (Int):** The maximum number of iterations allowed.
-- **minstep (Float64):** The minimum step length for line search.
-- **linesearch (Function):** The line search function to determine the step size.
-
-## Output:
-
-The descentgradient function returns the following elements:
-
-- **x (Vector):** The estimated minimizer.
-- **ierror (Int):** An indicator of success or failure.
-- **info (DataFrame):** A DataFrame containing information about optimization progress.
-- **fvals (Vector{Float64}):** Objective function values at each iteration.
-- **gradnorm (Vector{Float64}):** L2 norms of gradients at each iteration.
-- **stplen (Vector{Float64}):** Step lengths used in each iteration.
-- **et (Float64):** Elapsed time for optimization.
-- **seqx (Matrix{Float64}):** A matrix storing the sequence of estimations at each iteration.
-
-## Example:
-
-```julia
-include("descentgradient.jl")
-# Define your objective function f(x) and its gradient ∇f(x)
-# Define the line search function for step size determination
-x_initial = rand(2)  # Initial estimation
-ϵ = 1e-6  # Convergence tolerance
-η = 0.1  # Step size parameter
-maxiter = 1000  # Maximum number of iterations
-minstep = 1e-5  # Minimum step length for line search
-result = descentgradient(x_initial, f, ∇f, ϵ, η, maxiter, minstep, linesearch)
-x_minimizer, ierror, info, elapsed_time, seqx = result
-```
-
-## Remark:
-
-- The descentgradient function iteratively updates the estimation x by taking steps in the direction of the negative gradient.
-- Convergence is determined by checking the euclidian norm of the gradient against the specified tolerance.
-- The function handles cases of convergence, maximum iterations reached, and insufficient step lengths.
 
 # testrayleigh,jl
 
