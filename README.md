@@ -8,7 +8,7 @@ This file contains the function called descentgradient that implements the gradi
 - **f (Function):** The objective function to be minimized.
 - **∇f (Function):** The gradient of the objective function.
 - **ϵ (Float64):** The convergence tolerance.
-- **\boldsymbol{η} (Float64):** The step size parameter.
+- **$\boldsymbol{η}$ (Float64):** The step size parameter.
 - **maxiter (Int):** The maximum number of iterations allowed.
 - **minstep (Float64):** The minimum step length for line search.
 - **linesearch (Function):** The line search function to determine the step size.
