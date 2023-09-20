@@ -82,8 +82,8 @@ Z=[T[1:h] T[h+1:2h]]; #Matriz com os tempos
 
 colors=[:royalblue1, :green2]
 
-X = performance_profile(PlotsBackend(), W, ["MGA (dim=20)", "MGG (dim=20)"], xlabel="Performance ratio: # iterations", ylabel="Solved problems [%]", legend=:bottomright, palette=colors, lw=2, dpi=1000)
-Y = performance_profile(PlotsBackend(), Z, ["MGA (dim=20)", "MGG (dim=20)"], xlabel="CPU time ratio", ylabel="Solved problems [%]", legend=:bottomright, palette=colors, lw=2, dpi=1000)
+X = performance_profile(PlotsBackend(), W, ["MGA (dim=5)", "MGG (dim=5)"], xlabel="Performance ratio: # iterations", ylabel="Solved problems [%]", legend=:bottomright, palette=colors, lw=2, dpi=1000)
+Y = performance_profile(PlotsBackend(), Z, ["MGA (dim=5)", "MGG (dim=5)"], xlabel="CPU time ratio", ylabel="Solved problems [%]", legend=:bottomright, palette=colors, lw=2, dpi=1000)
 
 plot(X, Y)
 
